@@ -6,10 +6,9 @@ workflows:
       xcode: latest
     scripts:
       - name: Get dependencies
-        script: |
-          flutter pub get
+        script: flutter pub get
 
-      - name: Build iOS simulator .app
+      - name: Build iOS simulator app
         script: |
           flutter build ios --simulator --release
           cd build/ios/iphonesimulator
