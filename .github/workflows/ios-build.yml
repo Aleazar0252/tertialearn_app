@@ -21,7 +21,7 @@ jobs:
 
       - name: Build iOS Simulator App
         run: |
-          flutter build ios --simulator --release
+          flutter build ios --simulator
           cd build/ios/iphonesimulator
           zip -r Runner.app.zip Runner.app
 
