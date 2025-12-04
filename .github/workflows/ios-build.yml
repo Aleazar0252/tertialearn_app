@@ -1,31 +1,36 @@
-name: Build iOS simulator
+name: Build iOS Simulator
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Run manually
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
+      # 1️⃣ Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # 2️⃣ Install a specific Flutter version
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
+          flutter-version: 3.24.0
 
-      - name: Get dependencies
+      # 3️⃣ Get dependencies
+      - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Build iOS simulator app
+      # 4️⃣ Build iOS simulator app
+      - name: Build iOS Simulator App
         run: |
           flutter build ios --simulator --release
           cd build/ios/iphonesimulator
           zip -r Runner.app.zip Runner.app
 
-      - name: Upload build artifact
+      # 5️⃣ Upload the zipped simulator app as an artifact
+      - name: Upload iOS Simulator Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-simulator-app
